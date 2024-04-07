@@ -3,16 +3,21 @@
   padding-right: 30px;
   display: flex;
   flex-wrap: wrap;
-  column-gap: 60px;
-  row-gap: 5px;
-  justify-content: center;
+  gap: 10px;
 }
 
 .trendingMovieList {
   li {
-    width: calc((100% - 60px) / 2);
+    width: calc((100% - 30px) / 4);
     text-align: center;
-    border: 1px solid #5BA199;
+    border: 2px solid #CAA892;
     border-radius: 15px 0px;
+    box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
+    background-color: rgba(202, 168, 146, 0.5);
+    transition: scale var(--transition-time) var(--transition-effect);
+  }
+
+  li:hover {
+    scale: 1.05
   }
 }

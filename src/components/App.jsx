@@ -3,26 +3,29 @@ import { Route, Routes } from 'react-router-dom';
 
 import HomePage from '../pages/HomePage';
 import Navigation from './Navigation/Navigation';
-import { TMDBRequest } from '../fetchFunction';
+import { trendingMovieRequest } from '../services/fetchFunction';
 import MoviesPage from '../pages/MoviesPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import MovieDetailsPage from '../pages/MovieDetailsPage';
 
 const App = () => {
   const [trendingMovies, setTrendingMovies] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function trendingMoviesRequest() {
+    async function fetchTrendingMovies() {
       try {
-        const data = await TMDBRequest();
+        setError(false);
+        const data = await trendingMovieRequest();
         setTrendingMovies(data);
         console.log(data);
       } catch (error) {
+        setError(true);
         console.log(error);
       }
     }
 
-    trendingMoviesRequest();
+    fetchTrendingMovies();
   }, []);
 
   return (
@@ -30,22 +33,17 @@ const App = () => {
       <Navigation />
       <main>
         <Routes>
-          {Array.isArray(trendingMovies) && (
-            <>
-              <Route
-                path="/"
-                element={<HomePage trendingMovies={trendingMovies} />}
-              />
-              <Route
-                path={'/movies/:movieId/*'}
-                element={<MovieDetailsPage movieList={trendingMovies} />}
-              />
-              <Route
-                path="/movies"
-                element={<MoviesPage movieList={trendingMovies} />}
-              />
-            </>
-          )}
+          <>
+            <Route
+              path="/"
+              element={
+                <HomePage trendingMovies={trendingMovies} errorState={error} />
+              }
+            />
+            <Route path={'/movies/:movieId/*'} element={<MovieDetailsPage />} />
+            <Route path="/movies" element={<MoviesPage />} />
+          </>
+
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

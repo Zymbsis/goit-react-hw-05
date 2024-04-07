@@ -1,5 +1,11 @@
+@import url('../src/assets/fonts/fonts.css');
+
 :root {
-  font-family: 'Montserrat';
+  --transition-time: 350ms;
+  --transition-effect: ease-in-out;
+  --primary-font: 'Montserrat';
+  --secondary-font: 'OpenSans';
+  font-family: var(--primary-font);
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
@@ -9,8 +15,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --transition-time: 350ms;
-  --transition-effect: ease-in-out;
 }
 
 h1,
@@ -61,6 +65,7 @@ img {
 .section {
   padding: 120px 0;
   /* border: 1px solid #60866B; */
+  /* background-color: #E5E3E4; */
 }
 
 .container {
@@ -68,4 +73,17 @@ img {
   padding: 0 32px;
   margin: 0 auto;
   /* border: 1px solid #60866B; */
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
