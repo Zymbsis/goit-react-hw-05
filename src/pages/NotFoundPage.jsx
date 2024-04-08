@@ -1,11 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import clsx from 'clsx';
 import notFoundImg from '../img/page-not-found.png';
 import css from './NotFoundPage.module.css';
 
 const NotFoundPage = () => {
+  const navigate = useNavigate();
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimer(prev => prev + 1);
+    }, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  if (timer === 10) {
+    navigate('/', { replace: true });
+  }
+
   return (
     <section className="section">
-      <div className={`${css.notFoundContainer} + container`}>
+      <div className={clsx(css.notFoundContainer, 'container')}>
         <img
           className={css.notFoundImg}
           src={notFoundImg}
@@ -22,6 +38,10 @@ const NotFoundPage = () => {
           <Link className={css.notFoundLink} to={'/'}>
             Back to home
           </Link>
+          <span className={css.timer}>
+            or you will be automatically redirected to the home page in{' '}
+            {10 - timer} seconds
+          </span>
         </div>
       </div>
     </section>

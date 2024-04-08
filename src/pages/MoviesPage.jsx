@@ -4,22 +4,20 @@ import NothingFound from '../components/NothingFound/NothingFound';
 import css from './MoviesPage.module.css';
 import { moviesByKeywordRequest } from '../services/fetchFunction';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import { useSearchParams } from 'react-router-dom';
+import SearchForm from '../components/SearchForm/SearchForm';
 
 const MoviesPage = () => {
   const [searchResults, setSearchResults] = useState(null);
-  const [query, setQuery] = useState('');
   const [error, setError] = useState(false);
-
-  const onSubmit = e => {
-    e.preventDefault();
-    const form = e.target;
-    const query = form.elements.query.value;
-    setQuery(query);
-    console.log(query);
-  };
+  // const [emptyField, setEmptyField] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
 
   useEffect(() => {
-    if (!query.length) return;
+    if (query === null) {
+      return;
+    }
     async function fetchMoviesByKeyword() {
       try {
         setError(false);
@@ -34,13 +32,14 @@ const MoviesPage = () => {
     fetchMoviesByKeyword();
   }, [query]);
 
+  const onFormSubmit = value => {
+    setSearchParams({ query: value });
+  };
+
   return (
     <section className="section">
       <div className="container">
-        <form className={css.form} onSubmit={onSubmit}>
-          <input type="text" name="query" autoFocus />
-          <button type="submit">Search</button>
-        </form>
+        <SearchForm onFormSubmit={onFormSubmit} />
         {error && <ErrorMessage />}
         {Array.isArray(searchResults) && searchResults.length > 0 && (
           <ul className={css.searchList}>

@@ -1,13 +1,16 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Route, Routes } from 'react-router-dom';
 import { movieDetailsRequest } from '../services/fetchFunction';
 import { useEffect, useState } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { defaultImg } from '../services/default';
 import css from './MovieDetailsPage.module.css';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
+import MovieCast from '../components/MovieCast/MovieCast';
+import MovieReviews from '../components/MovieCast/MovieCast';
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
+
   const [movieDetails, setMovieDetails] = useState(null);
   const [error, setError] = useState(false);
 
@@ -84,6 +87,10 @@ const MovieDetailsPage = () => {
                 </li>
               </ul>
             </div>
+            <Routes>
+              <Route path="cast" element={<MovieCast />} />
+              <Route path="cast" element={<MovieReviews />} />
+            </Routes>
           </>
         )}
       </div>
