@@ -15,15 +15,12 @@ const MoviesPage = () => {
   const query = searchParams.get('query');
 
   useEffect(() => {
-    if (query === null) {
-      return;
-    }
+    if (!query) return;
     async function fetchMoviesByKeyword() {
       try {
         setError(false);
         const data = await moviesByKeywordRequest(query);
         setSearchResults(data);
-        console.log(data);
       } catch (error) {
         setError(true);
         console.log(error);

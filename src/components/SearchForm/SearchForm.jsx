@@ -5,7 +5,9 @@ const SearchForm = ({ onFormSubmit }) => {
     e.preventDefault();
     const form = e.target;
     const query = form.elements.query.value.trim();
-    if (!query) return;
+    if (!query) {
+      return;
+    }
     onFormSubmit(query);
   };
 

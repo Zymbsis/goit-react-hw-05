@@ -10,10 +10,10 @@ const Navigation = () => {
     <header className={css.header}>
       <div className={`${css.headerContainer} + container`}>
         <nav>
-          <NavLink className={getNavLinkClass} to={'/'}>
+          <NavLink className={getNavLinkClass} to="/">
             Home
           </NavLink>
-          <NavLink className={getNavLinkClass} to={'/movies'}>
+          <NavLink className={getNavLinkClass} to="/movies">
             Movies
           </NavLink>
         </nav>

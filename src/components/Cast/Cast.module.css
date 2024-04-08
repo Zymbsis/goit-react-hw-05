@@ -1,0 +1,27 @@
+.imgWrapper {
+  width: 100px;
+  height: 120px;
+  overflow: hidden;
+  position: relative;
+  border-top-left-radius: 15px;
+}
+
+.imgWrapper {
+  img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.textWrapper {
+  padding-top: 10px;
+}
+
+.textWrapper {
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}

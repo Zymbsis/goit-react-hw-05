@@ -1,16 +1,9 @@
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 import MovieList from '../components/MovieList/MovieList';
+import { renderConditionCheck } from '../services/default';
 import css from './HomePage.module.css';
 
 const HomePage = ({ trendingMovies, errorState }) => {
-  const renderConditionCheck = valueForCheck => {
-    return !Array.isArray(valueForCheck) ||
-      valueForCheck.length === 0 ||
-      valueForCheck === null
-      ? false
-      : true;
-  };
-
   return (
     <section className="section">
       <div className="container">

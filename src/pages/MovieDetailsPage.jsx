@@ -1,25 +1,33 @@
-import { Link, useParams, Route, Routes } from 'react-router-dom';
+import {
+  Link,
+  useParams,
+  Outlet,
+  NavLink,
+  useLocation,
+} from 'react-router-dom';
 import { movieDetailsRequest } from '../services/fetchFunction';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoIosArrowRoundBack } from 'react-icons/io';
-import { defaultImg } from '../services/default';
+import { defaultImg, pathToImg } from '../services/default';
 import css from './MovieDetailsPage.module.css';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
-import MovieCast from '../components/MovieCast/MovieCast';
-import MovieReviews from '../components/MovieCast/MovieCast';
+import clsx from 'clsx';
+
+const getNavLinkClass = ({ isActive }) =>
+  clsx(css.infoLink, { [css.navActive]: isActive });
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-
   const [movieDetails, setMovieDetails] = useState(null);
   const [error, setError] = useState(false);
+  const location = useLocation();
+  const backLink = useRef(location.state ?? '/');
 
   useEffect(() => {
     async function fetchData() {
       try {
         setError(false);
         const data = await movieDetailsRequest(movieId);
-        console.log(data);
         setMovieDetails(data);
       } catch (error) {
         setError(true);
@@ -32,7 +40,7 @@ const MovieDetailsPage = () => {
   return (
     <section className="section">
       <div className="container">
-        <Link className={css.backLink} to={'/'}>
+        <Link className={css.backLink} to={backLink.current}>
           <IoIosArrowRoundBack />
           Go back
         </Link>
@@ -46,7 +54,7 @@ const MovieDetailsPage = () => {
                   className={css.poster}
                   src={
                     movieDetails.poster_path
-                      ? `https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`
+                      ? `${pathToImg}${movieDetails.poster_path}`
                       : defaultImg
                   }
                   alt={movieDetails.title}
@@ -63,7 +71,7 @@ const MovieDetailsPage = () => {
                   <span>{Math.round(movieDetails.vote_average * 10) / 10}</span>
                 </h3>
                 <h3>Overview </h3>
-                <p>{movieDetails.overview}</p>
+                <p className={css.overview}>{movieDetails.overview}</p>
                 <h3>Genres</h3>
                 <p>
                   {movieDetails.genres.reduce((acc, genre) => {
@@ -76,21 +84,18 @@ const MovieDetailsPage = () => {
               <p>Additional information</p>
               <ul>
                 <li>
-                  <Link className={css.infoLink} to={'cast'}>
+                  <NavLink className={getNavLinkClass} to="cast">
                     Cast
-                  </Link>
+                  </NavLink>
                 </li>
                 <li>
-                  <Link className={css.infoLink} to={'reviews'}>
+                  <NavLink className={getNavLinkClass} to="reviews">
                     Reviews
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
             </div>
-            <Routes>
-              <Route path="cast" element={<MovieCast />} />
-              <Route path="cast" element={<MovieReviews />} />
-            </Routes>
+            <Outlet />
           </>
         )}
       </div>

@@ -24,7 +24,7 @@ export async function moviesByKeywordRequest(query) {
   const { data } = await axiosInstance.get(`search/movie`, {
     params: { query: query },
   });
-  console.log(data.results);
+  // console.log(data.results);
   return data.results;
 }
 

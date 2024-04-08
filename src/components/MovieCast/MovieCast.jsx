@@ -1,39 +1,31 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { movieDetailsRequest } from '../../services/fetchFunction';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { renderConditionCheck } from '../../services/default';
+import css from './MovieCast.module.css';
+import Cast from '../Cast/Cast';
+import useMovieAdditionalInformation from '../../services/hooks';
 
 const MovieCast = () => {
-  const { movieId } = useParams();
-  const [movieCast, setMovieCast] = useState(null);
-  const [error, setError] = useState(false);
+  const { movieInformation, error, loader } = useMovieAdditionalInformation(
+    '/credits',
+    'cast'
+  );
 
-  useEffect(() => {
-    async function fetchCastMovie() {
-      try {
-        setError(false);
-        const { cast } = await movieDetailsRequest(movieId, '/credits');
-        setMovieCast(movieCast);
-        console.log(cast);
-      } catch (error) {
-        setError(true);
-        console.log(error);
-      }
-    }
-
-    fetchCastMovie();
-  }, [movieId]);
   return (
-    <div>
+    <>
       {error && <ErrorMessage />}
-      {movieCast !== null && (
-        <ul>
-          {movieCast.map(movie => {
-            return <li key={movie.id}></li>;
+      {loader && <h2>GNOM</h2>}
+      {renderConditionCheck(movieInformation) && (
+        <ul className={css.castList}>
+          {movieInformation.map(movie => {
+            return (
+              <li key={movie.id}>
+                <Cast movie={movie} />
+              </li>
+            );
           })}
         </ul>
       )}
-    </div>
+    </>
   );
 };
 
