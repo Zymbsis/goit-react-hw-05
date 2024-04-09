@@ -32,29 +32,32 @@
 
 .navLink {
   display: flex;
+  justify-content: center;
   align-items: center;
+  width: 130px;
   padding: 10px 15px;
-  font-size: 24px;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
+  border: 1px solid #469597;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
   border-radius: 15px 0px;
-  transition: color var(--transition-time) var(--transition-effect), box-shadow var(--transition-time) var(--transition-effect), border-radius var(--transition-time) var(--transition-effect);
+  font-size: 20px;
+  font-weight: 600;
+  color: #37806B;
+  transition: color var(--transition-time) var(--transition-effect), background-color var(--transition-time) var(--transition-effect), box-shadow var(--transition-time) var(--transition-effect), border var(--transition-time) var(--transition-effect);
 }
 
 .navActive {
-  color: #37806B;
-  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
-  border-radius: 15px 0px;
-  border: 1px solid #469597;
-  transition: color var(--transition-time) var(--transition-effect), box-shadow var(--transition-time) var(--transition-effect), border-radius var(--transition-time) var(--transition-effect), border var(--transition-time) var(--transition-effect);
+  background-color: #37806B;
+  color: #fbfbfb;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.5);
+  transition: color var(--transition-time) var(--transition-effect),
+    background-color var(--transition-time) var(--transition-effect),
+    box-shadow var(--transition-time) var(--transition-effect),
+    border var(--transition-time) var(--transition-effect);
 }
 
 .navLink:hover {
-  color: #CAA892;
-}
-
-.navActive:hover {
   border: 1px solid #CAA892;
+  color: #CAA892;
+  background-color: #fbfbfb;
 }

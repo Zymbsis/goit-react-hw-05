@@ -10,14 +10,15 @@
   li {
     width: calc((100% - 30px) / 4);
     text-align: center;
-    border: 2px solid #CAA892;
-    border-radius: 15px 0px;
+    border: 2px solid #469597;
+    border-radius: 8px;
+    overflow: hidden;
     box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
-    background-color: rgba(202, 168, 146, 0.5);
-    transition: scale var(--transition-time) var(--transition-effect);
+    transition: scale var(--transition-time) var(--transition-effect), border-color var(--transition-time) var(--transition-effect);
   }
 
   li:hover {
-    scale: 1.05
+    scale: 1.05;
+    border-color: #CAA892;
   }
 }

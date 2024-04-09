@@ -5,12 +5,7 @@
   justify-content: space-between;
 }
 
-.backdrop {
-  border-top-left-radius: 14px;
-}
-
 .poster {
-  border-top-left-radius: 14px;
   height: 156px;
   object-fit: cover;
 }
