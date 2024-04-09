@@ -1,0 +1,66 @@
+.movieWrapper {
+  width: 75%;
+  max-height: 565px;
+  display: flex;
+  overflow: auto;
+  scrollbar-width: thin;
+  gap: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 50px;
+  margin-bottom: 15px;
+  border-top: 3px solid #469597;
+}
+
+.posterWrapper {
+  position: relative;
+  width: 350px;
+}
+
+.poster {
+  width: 350px;
+  position: relative;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.decoration {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #469597;
+  top: 15px;
+  left: 15px;
+}
+
+.movieDescWrapper {
+  padding-top: 30px;
+}
+
+.movieDescWrapper {
+  h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 0.05em;
+    color: #37806B;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  h3:first-of-type {
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

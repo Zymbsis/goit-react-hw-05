@@ -3,6 +3,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Review from '../Review/Review';
 import css from './MovieReviews.module.css';
 import useMovieAdditionalInformation from '../../services/hooks';
+import Loader from '../Loader/Loader';
 
 const MovieReviews = () => {
   const { movieInformation, error, loader } = useMovieAdditionalInformation(
@@ -12,7 +13,7 @@ const MovieReviews = () => {
   return (
     <>
       {error && <ErrorMessage />}
-      {loader && <loader />}
+      {loader && <Loader />}
       {renderConditionCheck(movieInformation) ? (
         <ul className={css.reviewList}>
           {movieInformation.map(movie => {

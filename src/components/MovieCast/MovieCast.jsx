@@ -2,6 +2,7 @@ import { renderConditionCheck } from '../../services/default';
 import useMovieAdditionalInformation from '../../services/hooks';
 import Cast from '../Cast/Cast';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import Loader from '../Loader/Loader';
 import css from './MovieCast.module.css';
 
 const MovieCast = () => {
@@ -13,7 +14,7 @@ const MovieCast = () => {
   return (
     <>
       {error && <ErrorMessage />}
-      {loader && <loader />}
+      {loader && <Loader />}
       {renderConditionCheck(movieInformation) ? (
         <ul className={css.castList}>
           {movieInformation.map(movie => {
