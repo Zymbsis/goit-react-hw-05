@@ -10,13 +10,11 @@ const axiosInstance = axios.create({
 
 export async function trendingMovieRequest() {
   const { data } = await axiosInstance.get(`trending/movie/day`);
-  // console.log(data.results);
   return data.results;
 }
 
 export async function movieDetailsRequest(id, endpoint) {
   const { data } = await axiosInstance.get(`movie/${id}${endpoint}`);
-  // console.log(data);
   return data;
 }
 
@@ -24,12 +22,5 @@ export async function moviesByKeywordRequest(query) {
   const { data } = await axiosInstance.get(`search/movie`, {
     params: { query: query },
   });
-  // console.log(data.results);
   return data.results;
 }
-
-// trendingRequest();
-// movieDetailsRequest(972614);
-// movieDetailsRequest(693134, '/credits');
-// movieDetailsRequest(438631, '/reviews');
-// moviesByKeywordRequest('Adele');
