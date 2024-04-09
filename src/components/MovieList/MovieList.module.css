@@ -16,14 +16,10 @@
 }
 
 .title {
-  display: inline-flex;
   align-self: center;
-  flex-shrink: 1;
   font-family: var(--secondary-font);
   font-size: 24px;
-  font-weight: 600;
   letter-spacing: 0.04em;
-  color: #000;
   padding: 10px;
   margin-block: auto;
 }

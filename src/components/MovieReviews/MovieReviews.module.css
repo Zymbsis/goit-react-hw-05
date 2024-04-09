@@ -1,0 +1,19 @@
+.reviewList {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.reviewList {
+  li {
+    padding-bottom: 15px;
+    border-bottom: 3px solid #469597;
+  }
+}
+
+.noReviews {
+  padding-top: 30px;
+  font-size: 24px;
+  text-align: center;
+}

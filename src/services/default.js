@@ -4,9 +4,5 @@ export const defaultImg =
 export const pathToImg = 'https://image.tmdb.org/t/p/w500';
 
 export const renderConditionCheck = valueForCheck => {
-  return !Array.isArray(valueForCheck) ||
-    valueForCheck.length === 0 ||
-    valueForCheck === null
-    ? false
-    : true;
+  return Array.isArray(valueForCheck) && valueForCheck.length > 0;
 };

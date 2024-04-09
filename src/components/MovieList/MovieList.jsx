@@ -19,7 +19,7 @@ const MovieList = ({ movie: { id, title, backdrop_path, poster_path } }) => {
         alt={title}
         width={400}
       />
-      <span className={css.title}>{title}</span>
+      <h2 className={css.title}>{title}</h2>
     </Link>
   );
 };

@@ -1,8 +1,8 @@
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { renderConditionCheck } from '../../services/default';
-import css from './MovieCast.module.css';
-import Cast from '../Cast/Cast';
 import useMovieAdditionalInformation from '../../services/hooks';
+import Cast from '../Cast/Cast';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import css from './MovieCast.module.css';
 
 const MovieCast = () => {
   const { movieInformation, error, loader } = useMovieAdditionalInformation(
@@ -13,8 +13,8 @@ const MovieCast = () => {
   return (
     <>
       {error && <ErrorMessage />}
-      {loader && <h2>GNOM</h2>}
-      {renderConditionCheck(movieInformation) && (
+      {loader && <loader />}
+      {renderConditionCheck(movieInformation) ? (
         <ul className={css.castList}>
           {movieInformation.map(movie => {
             return (
@@ -24,6 +24,12 @@ const MovieCast = () => {
             );
           })}
         </ul>
+      ) : (
+        movieInformation !== null && (
+          <p className={css.noCast}>
+            Unfortunately, the cast for this movie hasn`t been added yet
+          </p>
+        )
       )}
     </>
   );
