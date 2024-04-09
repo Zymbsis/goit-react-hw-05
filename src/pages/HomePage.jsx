@@ -3,7 +3,6 @@ import { renderConditionCheck } from '../services/default';
 import { trendingMovieRequest } from '../services/fetchFunction';
 import ErrorMessage from '../components/ErrorMessage/ErrorMessage';
 import MovieList from '../components/MovieList/MovieList';
-import css from './HomePage.module.css';
 import Loader from '../components/Loader/Loader';
 
 const HomePage = () => {
@@ -34,13 +33,7 @@ const HomePage = () => {
       {error && <ErrorMessage />}
       {loader && <Loader />}
       {renderConditionCheck(trendingMovies) && (
-        <ul className={css.trendingMovieList}>
-          {trendingMovies.map(movie => (
-            <li key={movie.id}>
-              <MovieList movie={movie} />
-            </li>
-          ))}
-        </ul>
+        <MovieList movieList={trendingMovies} />
       )}
     </div>
   );

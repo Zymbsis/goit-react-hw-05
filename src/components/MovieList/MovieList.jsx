@@ -1,26 +1,15 @@
-import { Link, useLocation } from 'react-router-dom';
-import { defaultImg, pathToImg } from '../../services/default';
+import Movie from '../Movie/Movie';
 import css from './MovieList.module.css';
 
-const MovieList = ({ movie: { id, title, backdrop_path, poster_path } }) => {
-  const location = useLocation();
-
+const MovieList = ({ movieList }) => {
   return (
-    <Link className={css.link} state={location} to={`/movies/${id}`}>
-      <img
-        className={backdrop_path ? css.backdrop : css.poster}
-        src={
-          backdrop_path
-            ? `${pathToImg}${backdrop_path}`
-            : poster_path
-            ? `${pathToImg}${poster_path}`
-            : defaultImg
-        }
-        alt={title}
-        width={400}
-      />
-      <h2 className={css.title}>{title}</h2>
-    </Link>
+    <ul className={css.trendingMovieList}>
+      {movieList.map(movie => (
+        <li key={movie.id}>
+          <Movie movie={movie} />
+        </li>
+      ))}
+    </ul>
   );
 };
 
